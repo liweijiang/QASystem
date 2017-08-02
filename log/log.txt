@@ -1,0 +1,422 @@
+Created model with fresh parameters.
+Num params: 1123801
+Number of params: 1123801 (retreival took 2.649753 secs)
+========== Epoch 1 out of 25 ==========
+
+F1: 10.7378798396, EM: 2.75, for 400 samples
+F1: 8.53767985551, EM: 2.75, for 400 samples
+
+F1: 12.094881459, EM: 4.75, for 400 samples
+F1: 10.9630661506, EM: 4.0, for 400 samples
+
+F1: 15.7635581213, EM: 6.75, for 400 samples
+F1: 15.6816922021, EM: 7.0, for 400 samples
+
+F1: 18.0454654108, EM: 9.0, for 400 samples
+F1: 14.5650391756, EM: 6.75, for 400 samples
+
+F1: 15.9657702503, EM: 7.75, for 400 samples
+F1: 15.3745654617, EM: 7.75, for 400 samples
+
+F1: 17.2529965838, EM: 7.75, for 400 samples
+F1: 19.2856194585, EM: 11.0, for 400 samples
+
+F1: 22.82485089, EM: 10.25, for 400 samples
+F1: 21.2007610412, EM: 12.0, for 400 samples
+
+F1: 24.395234151, EM: 13.25, for 400 samples
+F1: 22.6563909988, EM: 13.5, for 400 samples
+
+F1: 21.6830832882, EM: 11.25, for 400 samples
+F1: 21.2801310846, EM: 12.75, for 400 samples
+
+F1: 22.4452181768, EM: 12.25, for 400 samples
+F1: 23.6116198159, EM: 13.5, for 400 samples
+
+F1: 24.9970263437, EM: 14.25, for 400 samples
+F1: 23.3930208874, EM: 14.25, for 400 samples
+
+F1: 24.0112462379, EM: 12.5, for 400 samples
+F1: 21.45890151, EM: 12.5, for 400 samples
+
+F1: 29.2628099741, EM: 17.25, for 400 samples
+F1: 24.115568846, EM: 13.75, for 400 samples
+
+F1: 25.4159636943, EM: 13.75, for 400 samples
+F1: 28.3104432403, EM: 17.25, for 400 samples
+
+F1: 27.7928940527, EM: 16.75, for 400 samples
+F1: 28.330331235, EM: 18.5, for 400 samples
+
+F1: 33.2474745598, EM: 18.5, for 400 samples
+F1: 27.4893638066, EM: 16.0, for 400 samples
+
+F1: 36.8262018526, EM: 22.0, for 400 samples
+F1: 30.0631168009, EM: 18.25, for 400 samples
+Created model with fresh parameters.
+Num params: 1123801
+Number of params: 1123801 (retreival took 2.679998 secs)
+========== Epoch 1 out of 1 ==========
+
+F1: 8.42640013037, EM: 2.5, for 400 samples
+Created model with fresh parameters.
+Num params: 1123801
+Number of params: 1123801 (retreival took 2.708864 secs)
+========== Epoch 1 out of 1 ==========
+Created model with fresh parameters.
+Num params: 1123801
+Number of params: 1123801 (retreival took 2.670063 secs)
+========== Epoch 1 out of 1 ==========
+
+F1: 6.71527944013, EM: 0.0, for 60 samples
+F1: 16.2582680477, EM: 1.66666666667, for 60 samples
+
+F1: 8.73942047113, EM: 1.66666666667, for 60 samples
+F1: 13.0631005669, EM: 5.0, for 60 samples
+Created model with fresh parameters.
+Num params: 1123801
+Number of params: 1123801 (retreival took 2.608178 secs)
+========== Epoch 1 out of 1 ==========
+Created model with fresh parameters.
+Num params: 1123801
+Number of params: 1123801 (retreival took 2.957892 secs)
+========== Epoch 1 out of 1 ==========
+Created model with fresh parameters.
+Num params: 1123801
+Number of params: 1123801 (retreival took 3.109338 secs)
+========== Epoch 1 out of 1 ==========
+Created model with fresh parameters.
+Num params: 1123801
+Number of params: 1123801 (retreival took 2.620519 secs)
+========== Epoch 1 out of 1 ==========
+Created model with fresh parameters.
+Num params: 1123801
+Number of params: 1123801 (retreival took 2.944093 secs)
+========== Epoch 1 out of 1 ==========
+Created model with fresh parameters.
+Num params: 1123801
+Number of params: 1123801 (retreival took 3.465793 secs)
+========== Epoch 1 out of 1 ==========
+Created model with fresh parameters.
+Num params: 1123801
+Number of params: 1123801 (retreival took 2.674494 secs)
+========== Epoch 1 out of 1 ==========
+Average training loss: 231.089821952
+-- validation --
+Average validation loss: 197.115178426
+Created model with fresh parameters.
+Num params: 1123801
+Number of params: 1123801 (retreival took 2.706042 secs)
+========== Epoch 1 out of 1 ==========
+Average training loss: 234.476346436
+-- validation --
+Average validation loss: 200.555389404
+F1: 0.0, EM: 0.0, for 20 samples
+Reading model parameters from train/fancier_model_0
+Number of params: 1123801 (retreival took 2.747212 secs)
+========== Epoch 1 out of 3 ==========
+Average training loss: 228.791646729
+-- validation --
+Average validation loss: 201.608001709
+F1: 15.8993316625, EM: 5.0, for 20 samples
+New best f1 in val set
+
+========== Epoch 2 out of 3 ==========
+Average training loss: 223.051592407
+-- validation --
+Average validation loss: 202.942047119
+F1: 10.2083333333, EM: 0.0, for 20 samples
+========== Epoch 3 out of 3 ==========
+Average training loss: 220.936165161
+-- validation --
+Average validation loss: 199.811935425
+F1: 2.45593869732, EM: 0.0, for 20 samples
+Reading model parameters from train/fancier_model_2
+Number of params: 1123801 (retreival took 2.838306 secs)
+========== Epoch 1 out of 1 ==========
+Average training loss: 211.472940674
+-- validation --
+Average validation loss: 206.490656535
+F1: 1.11111111111, EM: 0.0, for 20 samples
+New best f1 in val set
+
+Reading model parameters from train/fancier_model_0
+Number of params: 1123801 (retreival took 3.202059 secs)
+========== Epoch 1 out of 1 ==========
+
+F1: 10.765993266, EM: 5.0, for 60 samples
+F1: 10.906001406, EM: 1.66666666667, for 60 samples
+
+F1: 16.7731481481, EM: 6.66666666667, for 60 samples
+F1: 19.7358225108, EM: 8.33333333333, for 60 samples
+Created model with fresh parameters.
+Num params: 1123801
+Number of params: 1123801 (retreival took 2.835883 secs)
+========== Epoch 1 out of 25 ==========
+Reading model parameters from train/fancier_model_0
+Reading model parameters from train/fancier_model_0
+Reading model parameters from train/fancier_model_0
+Reading model parameters from train/fancier_model_0
+Reading model parameters from train/fancier_model_0
+Reading model parameters from train/fancier_model_0
+Reading model parameters from train/fancier_model_0
+Reading model parameters from train/fancier_model_0
+-- validation --
+Average validation loss: 206.490656535
+Reading model parameters from train/fancier_model_0
+-- validation --
+Reading model parameters from train/fancier_model_0
+-- validation --
+Reading model parameters from train/fancier_model_0
+-- validation --
+Reading model parameters from train/fancier_model_0
+-- validation --
+Reading model parameters from train/fancier_model_0
+-- validation --
+Reading model parameters from train/fancier_model_0
+Reading model parameters from train/fancier_model_0
+Reading model parameters from train/fancier_model_0
+-- validation --
+-- validation --
+Reading model parameters from train/fancier_model_0
+-- validation --
+-- validation --
+-- validation --
+Reading model parameters from train/fancier_model_0
+-- validation --
+-- validation --
+Reading model parameters from train/fancier_model_0
+-- get answer --
+-- get answer --
+Reading model parameters from train/fancier_model_0
+-- get answer --
+Reading model parameters from train/fancier_model_0
+-- get answer --
+Reading model parameters from train/fancier_model_0
+Reading model parameters from train/fancier_model_5
+Training model ...
+Number of params: 1123801 (retreival took 2.723831 secs)
+========== Epoch 10 out of 25 ==========
+Reading model parameters from train/fancier_model_17
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+Reading model parameters from train/fancier_model_17
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+Reading model parameters from train/fancier_model_24
+Validating model ...
+Reading model parameters from train/fancier_model_24
+Validating model ...
+-- validation --
+Average validation loss: 71.7070922852
+F1: 69.0053328508, EM: 41.6666666667, for 60 samples
+Validation result: F1 = 6900.53, EM = 4166.67
+Reading model parameters from train/fancier_model_24
+Validating model ...
+-- validation --
+Average validation loss: 64.7796122233
+F1: 75.0036780852, EM: 50.0, for 60 samples
+Reading model parameters from train/fancier_model_24
+Validating model ...
+-- validation --
+Average validation loss: 64.7796096802
+F1: 72.975606578, EM: 50.0, for 72 samples
+Reading model parameters from train/fancier_model_24
+Validating model ...
+-- validation --
+Average validation loss: 64.7796084086
+F1: 72.975606578, EM: 50.0, for 72 samples
+Reading model parameters from train/fancier_model_24
+Validating model ...
+-- validation --
+Average validation loss: 64.7796084086
+F1: 72.975606578, EM: 50.0, for 72 samples
+Reading model parameters from train/fancier_model_24
+Validating model ...
+-- validation --
+Average validation loss: 71.7070922852
+Reading model parameters from train/fancier_model_24
+Validating model ...
+-- validation --
+Average validation loss: 71.7070948283
+F1: 69.0053328508, EM: 41.6666666667, for 60 samples
+Reading model parameters from train/fancier_model_24
+Exporting model ...
+Reading model parameters from train/fancier_model_24
+Exporting model ...
+Begin to export trained model to export/export_model/0
+Reading model parameters from train/fancier_model_24
+Exporting model ...
+Begin to export trained model to export/export_model/0
+Reading model parameters from train/fancier_model_24
+Exporting model ...
+Begin to export trained model to export/export_model/0
+Reading model parameters from train/fancier_model_24
+Exporting model ...
+Begin to export trained model to export/export_model/0
+Reading model parameters from train/fancier_model_24
+Exporting model ...
+Begin to export trained model to export/export_model/0
+Reading model parameters from train/fancier_model_24
+Exporting model ...
+Begin to export trained model to export/export_model/0
+Reading model parameters from train/fancier_model_24
+Exporting model ...
+Begin to export trained model to export/export_model/0
+Reading model parameters from train/fancier_model_24
+Exporting model ...
+Begin to export trained model to export/export_model/0
+Reading model parameters from train/fancier_model_24
+Exporting model ...
+Begin to export trained model to export/export_model/0
+Reading model parameters from train/fancier_model_24
+Exporting model ...
+Begin to export trained model to export/export_model/0
+Reading model parameters from train/fancier_model_24
+Exporting model ...
+Begin to export trained model to export/0
+Reading model parameters from train/fancier_model_24
+Exporting model ...
+Begin to export trained model to export/0
+Reading model parameters from train/fancier_model_24
+Exporting model ...
+Begin to export trained model to export/0
+Reading model parameters from train/fancier_model_24
+Exporting model ...
+Begin to export trained model to export/0
+Reading model parameters from train/fancier_model_24
+Exporting model ...
+Begin to export trained model to export/0
+Reading model parameters from train/fancier_model_24
+Exporting model ...
+Begin to export trained model to export/0
+Reading model parameters from train/fancier_model_24
+Exporting model ...
+Begin to export trained model to export/0
+Reading model parameters from train/fancier_model_24
+Exporting model ...
+Begin to export trained model to export/0
+Reading model parameters from train/fancier_model_24
+Exporting model ...
+Begin to export trained model to export/0
+Reading model parameters from train/fancier_model_24
+Exporting model ...
+Begin to export trained model to export/0
+Reading model parameters from train/fancier_model_24
+Exporting model ...
+Begin to export trained model to export/0
+Reading model parameters from train/fancier_model_24
+Exporting model ...
+Begin to export trained model to export/0
+Reading model parameters from train/fancier_model_24
+Exporting model ...
+Begin to export trained model to export/0
+Reading model parameters from train/fancier_model_24
+Exporting model ...
+Begin to export trained model to export/0
+Reading model parameters from train/fancier_model_24
+Exporting model ...
+Begin to export trained model to export/0
+Reading model parameters from train/fancier_model_24
+Exporting model ...
+Begin to export trained model to export/0
+Reading model parameters from train/fancier_model_24
+Exporting model ...
+Begin to export trained model to export/0
+Reading model parameters from train/fancier_model_24
+Restoring parameters from train/fancier_model_24
+Created model with fresh parameters.
+Num params: 1123801
+Training model ...
+Number of params: 1123801 (retreival took 2.897642 secs)
+========== Epoch 18 out of 25 ==========
+Created model with fresh parameters.
+Num params: 1123801
+Training model ...
+Number of params: 1123801 (retreival took 4.862819 secs)
+========== Epoch 1 out of 25 ==========
+Created model with fresh parameters.
+Num params: 1123801
+Training model ...
+Number of params: 1123801 (retreival took 4.782552 secs)
+========== Epoch 1 out of 25 ==========
+Reading model parameters from train/fancier_model_24
+Restoring parameters from train/fancier_model_24
+Reading model parameters from train/fancier_model_1
+Restoring parameters from train/fancier_model_1
+Training model ...
+Number of params: 1123801 (retreival took 6.097052 secs)
+========== Epoch 1 out of 25 ==========
+Reading model parameters from train/fancier_model_1
+Restoring parameters from train/fancier_model_1
+Exporting model ...
+Begin to export trained model to export/0
+Reading model parameters from train/fancier_model_1
+Restoring parameters from train/fancier_model_1
+Exporting model ...
+Begin to export trained model to export/0
+Reading model parameters from train/fancier_model_1
+Restoring parameters from train/fancier_model_1
+Exporting model ...
+Begin to export trained model to export/0
+Reading model parameters from train/fancier_model_1
+Restoring parameters from train/fancier_model_1
+Exporting model ...
+Begin to export trained model to export/0
+Reading model parameters from train/fancier_model_1
+Restoring parameters from train/fancier_model_1
+Exporting model ...
+Begin to export trained model to export/0
+Reading model parameters from train/fancier_model_1
+Restoring parameters from train/fancier_model_1
+Exporting model ...
+Begin to export trained model to export/0
+Reading model parameters from train/fancier_model_1
+Restoring parameters from train/fancier_model_1
+Exporting model ...
+Reading model parameters from train/fancier_model_1
+Restoring parameters from train/fancier_model_1
+Exporting model ...
+Begin to export trained model to export/0
+Reading model parameters from train/fancier_model_1
+Restoring parameters from train/fancier_model_1
+Exporting model ...
+Begin to export trained model to export/0
+No assets to save.
+No assets to write.
+SavedModel written to: export/0/saved_model.pb
+Finishing exporting trained model to export/0
+Reading model parameters from train/fancier_model_1
+Restoring parameters from train/fancier_model_1
+Exporting model ...
+Begin to export trained model to export/export_model/0
+No assets to save.
+No assets to write.
+SavedModel written to: export/export_model/0/saved_model.pb
+Finishing exporting trained model to export/export_model/0
+Reading model parameters from train/fancier_model_1
+Restoring parameters from train/fancier_model_1
+Exporting model ...
+Begin to export trained model to export/export_model/0
+Reading model parameters from train/fancier_model_1
+Restoring parameters from train/fancier_model_1
+Exporting model ...
+Begin to export trained model to export/export_model0
+No assets to save.
+No assets to write.
+SavedModel written to: export/export_model0/saved_model.pb
+Finishing exporting trained model to export/export_model0
