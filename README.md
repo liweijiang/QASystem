@@ -1,4 +1,5 @@
+# QASystem
 ## Upgraded Version of QASystem3
-TensorFlow 1.2 \n
-Python 2.7 \n
-Model exported for TensorFlow Serving.
+1. TensorFlow 1.2
+2. Python 2.7
+3. Model exported for TensorFlow Serving.
