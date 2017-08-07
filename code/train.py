@@ -23,7 +23,7 @@ tf.app.flags.DEFINE_float("learning_rate", 0.0005, "Learning rate.")
 tf.app.flags.DEFINE_float("max_gradient_norm", 10.0, "Clip gradients to this norm.")
 tf.app.flags.DEFINE_float("dropout", 0.20, "Fraction of units randomly dropped on non-recurrent connections.")
 tf.app.flags.DEFINE_integer("batch_size", 24, "Batch size to use during training.")
-tf.app.flags.DEFINE_integer("epochs", 25, "Number of epochs to train.")
+tf.app.flags.DEFINE_integer("epochs", 1, "Number of epochs to train.")
 tf.app.flags.DEFINE_integer("encoder_state_size", 100, "Size of each encoder model layer.")
 tf.app.flags.DEFINE_integer("decoder_state_size", 100, "Size of each decoder model layer.")
 tf.app.flags.DEFINE_integer("output_size", 750, "The output size of your model.")
@@ -39,9 +39,9 @@ tf.app.flags.DEFINE_string("vocab_path", "data/squad/vocab.dat", "Path to vocab 
 tf.app.flags.DEFINE_string("embed_path", "", "Path to the trimmed GLoVe embedding (default: ./data/squad/glove.trimmed.{embedding_size}.npz)")
 tf.app.flags.DEFINE_string("single_question", "What is density?", "Question regarding a context paragraph.")
 tf.app.flags.DEFINE_string("single_context", "The density, or more precisely, the volumetric mass density, of a substance is its mass per unit volume.", "Context paragraph to ask a question.")
-tf.app.flags.DEFINE_string("mode", "export", "Mode of session (default: train).")
-tf.app.flags.DEFINE_string("export_path_base", "export", "Export path base name.")
-tf.app.flags.DEFINE_integer("model_version", 0, "Model version to export.")
+tf.app.flags.DEFINE_string("mode", "single", "Mode of session (default: train).")
+tf.app.flags.DEFINE_string("export_path_base", "qasystem_export", "Export path base name.")
+tf.app.flags.DEFINE_integer("model_version", 1, "Model version to export.")
 
 tf.app.flags.DEFINE_integer("question_maxlen", 30, "Max length of question (default: 30")
 tf.app.flags.DEFINE_integer("context_maxlen", 400, "Max length of the context (default: 400)")
@@ -53,8 +53,8 @@ tf.app.flags.DEFINE_boolean("tensorboard", False, "Write tensorboard log or not.
 tf.app.flags.DEFINE_boolean("RE_TRAIN_EMBED", False, "Max length of the context (default: 400)")
 tf.app.flags.DEFINE_string("debug_train_samples", None, "number of samples for debug (default: None)")
 tf.app.flags.DEFINE_float("ema_weight_decay", 0.999, "exponential decay for moving averages ")
-tf.app.flags.DEFINE_integer("evaluate_sample_size", 400, "number of samples for evaluation (default: 400)")
-tf.app.flags.DEFINE_integer("model_selection_sample_size", 1000, "number of samples for selecting best model (default: 1000)")
+tf.app.flags.DEFINE_integer("evaluate_sample_size", 10, "number of samples for evaluation (default: 400)")
+tf.app.flags.DEFINE_integer("model_selection_sample_size", 10, "number of samples for selecting best model (default: 1000)")
 tf.app.flags.DEFINE_integer("window_batch", 3, "window size / batch size")
 
 FLAGS = tf.app.flags.FLAGS
@@ -110,12 +110,6 @@ def preprocess_single_eval_data(question, context, vocab):
     question_id = sentence_to_token_ids(question, vocab)
     context_id = sentence_to_token_ids(context, vocab)
 
-    # print('*' * 50)
-    # print(question)
-    # print(question_id)
-    # print('-' * 50)
-    # print(context)
-    # print(context_id)
     return [question_id, len(question_id), context_id, len(context_id), [0, 0]], question, context
 
 def main(_):
@@ -133,11 +127,6 @@ def main(_):
 
     vocab_path = FLAGS.vocab_path or pjoin(FLAGS.data_dir, "vocab.dat")
     vocab, rev_vocab = initialize_vocab(vocab_path)
-    # FLAGS.epochs = 1
-    # FLAGS.data_dir = "data/squad/small_test_data"
-
-    # FLAGS.mode = "single"
-
     qa = QASystem(embeddings, FLAGS)
 
     if not os.path.exists(FLAGS.log_dir):
@@ -145,7 +134,7 @@ def main(_):
     file_handler = logging.FileHandler(pjoin(FLAGS.log_dir, "log.txt"))
     logging.getLogger().addHandler(file_handler)
 
-    print(vars(FLAGS))
+    # print(vars(FLAGS))
     with open(os.path.join(FLAGS.log_dir, "flags.json"), 'w') as fout:
         json.dump(FLAGS.__flags, fout)
 
@@ -160,6 +149,7 @@ def main(_):
             logging.info("Training model ...")
             save_train_dir = get_normalized_train_dir(FLAGS.train_dir)
             qa.train(sess, dataset, save_train_dir, rev_vocab)
+            # qa.export_model(sess, FLAGS.export_path_base, dataset, rev_vocab)
 
         elif FLAGS.mode == 'validate':
             logging.info("Validating model ...")
@@ -168,7 +158,7 @@ def main(_):
 
         elif FLAGS.mode == 'export':
             logging.info("Exporting model ...")
-            qa.export_model(sess, FLAGS.export_path_base)
+            qa.export_model(sess, FLAGS.export_path_base, dataset, rev_vocab)
 
         elif FLAGS.mode == 'single':
             while True:

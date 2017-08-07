@@ -420,3 +420,747 @@ No assets to save.
 No assets to write.
 SavedModel written to: export/export_model0/saved_model.pb
 Finishing exporting trained model to export/export_model0
+Reading model parameters from train/fancier_model_1
+Restoring parameters from train/fancier_model_1
+Exporting model ...
+Reading model parameters from train/fancier_model_1
+Restoring parameters from train/fancier_model_1
+Exporting model ...
+Reading model parameters from train/fancier_model_1
+Restoring parameters from train/fancier_model_1
+Training model ...
+Number of params: 1123801 (retreival took 5.277688 secs)
+========== Epoch 1 out of 25 ==========
+Reading model parameters from train/fancier_model_1
+Restoring parameters from train/fancier_model_1
+Training model ...
+Number of params: 1123801 (retreival took 6.119304 secs)
+========== Epoch 1 out of 25 ==========
+Reading model parameters from train/fancier_model_1
+Restoring parameters from train/fancier_model_1
+Training model ...
+Number of params: 1123801 (retreival took 5.455276 secs)
+========== Epoch 1 out of 25 ==========
+Reading model parameters from train/fancier_model_1
+Restoring parameters from train/fancier_model_1
+Training model ...
+Number of params: 1123801 (retreival took 5.423180 secs)
+========== Epoch 1 out of 25 ==========
+Reading model parameters from train/fancier_model_1
+Restoring parameters from train/fancier_model_1
+Exporting model ...
+Reading model parameters from train/fancier_model_1
+Restoring parameters from train/fancier_model_1
+Training model ...
+Number of params: 1123801 (retreival took 5.608154 secs)
+========== Epoch 1 out of 25 ==========
+Reading model parameters from train/fancier_model_1
+Restoring parameters from train/fancier_model_1
+Training model ...
+Number of params: 1123801 (retreival took 5.120034 secs)
+========== Epoch 1 out of 25 ==========
+Reading model parameters from train/fancier_model_1
+Restoring parameters from train/fancier_model_1
+Training model ...
+Number of params: 1123801 (retreival took 5.557260 secs)
+========== Epoch 1 out of 25 ==========
+Reading model parameters from train/fancier_model_1
+Restoring parameters from train/fancier_model_1
+Training model ...
+Number of params: 1123801 (retreival took 5.265470 secs)
+========== Epoch 1 out of 25 ==========
+Reading model parameters from train/fancier_model_1
+Restoring parameters from train/fancier_model_1
+Training model ...
+Number of params: 1123801 (retreival took 5.502827 secs)
+========== Epoch 1 out of 25 ==========
+Reading model parameters from train/fancier_model_1
+Restoring parameters from train/fancier_model_1
+Training model ...
+Number of params: 1123801 (retreival took 5.109212 secs)
+========== Epoch 1 out of 25 ==========
+Reading model parameters from train/fancier_model_1
+Restoring parameters from train/fancier_model_1
+Training model ...
+Number of params: 1123801 (retreival took 5.205990 secs)
+========== Epoch 1 out of 25 ==========
+Reading model parameters from train/fancier_model_1
+Restoring parameters from train/fancier_model_1
+Training model ...
+Number of params: 1123801 (retreival took 5.970803 secs)
+========== Epoch 1 out of 25 ==========
+Reading model parameters from train/fancier_model_1
+Restoring parameters from train/fancier_model_1
+Training model ...
+Number of params: 1123801 (retreival took 5.410032 secs)
+========== Epoch 1 out of 25 ==========
+
+F1: 62.0407374617, EM: 45.25, for 400 samples
+F1: 58.4825204118, EM: 45.0, for 400 samples
+Reading model parameters from train/fancier_model_1
+Restoring parameters from train/fancier_model_1
+Training model ...
+Number of params: 1123801 (retreival took 5.177979 secs)
+========== Epoch 1 out of 25 ==========
+Reading model parameters from train/fancier_model_1
+Restoring parameters from train/fancier_model_1
+Training model ...
+Number of params: 1123801 (retreival took 5.038881 secs)
+========== Epoch 1 out of 25 ==========
+Reading model parameters from train/fancier_model_1
+Restoring parameters from train/fancier_model_1
+Training model ...
+Number of params: 1123801 (retreival took 5.148178 secs)
+========== Epoch 1 out of 25 ==========
+Reading model parameters from train/fancier_model_1
+Restoring parameters from train/fancier_model_1
+Training model ...
+Number of params: 1123801 (retreival took 5.167630 secs)
+========== Epoch 1 out of 25 ==========
+Reading model parameters from train/fancier_model_1
+Restoring parameters from train/fancier_model_1
+Training model ...
+Number of params: 1123801 (retreival took 6.024528 secs)
+========== Epoch 1 out of 25 ==========
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Training model ...
+Number of params: 1123801 (retreival took 5.615635 secs)
+========== Epoch 1 out of 25 ==========
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Training model ...
+Number of params: 1123801 (retreival took 5.163663 secs)
+========== Epoch 1 out of 25 ==========
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Exporting model ...
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Exporting model ...
+Begin to export trained model to export/0
+No assets to save.
+No assets to write.
+SavedModel written to: export/0/saved_model.pb
+Finishing exporting trained model to export/0
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Exporting model ...
+Begin to export trained model to export/0
+No assets to save.
+No assets to write.
+SavedModel written to: export/0/saved_model.pb
+Finishing exporting trained model to export/0
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Exporting model ...
+Begin to export trained model to export/0
+No assets to save.
+No assets to write.
+SavedModel written to: export/0/saved_model.pb
+Finishing exporting trained model to export/0
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Training model ...
+Number of params: 1123801 (retreival took 5.452340 secs)
+========== Epoch 1 out of 25 ==========
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Training model ...
+Number of params: 1123801 (retreival took 5.459966 secs)
+========== Epoch 1 out of 25 ==========
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Training model ...
+Number of params: 1123801 (retreival took 5.110937 secs)
+========== Epoch 1 out of 25 ==========
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Training model ...
+Number of params: 1123801 (retreival took 5.058092 secs)
+========== Epoch 1 out of 25 ==========
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Training model ...
+Number of params: 1123801 (retreival took 5.521448 secs)
+========== Epoch 1 out of 25 ==========
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Training model ...
+Number of params: 1123801 (retreival took 5.612422 secs)
+========== Epoch 1 out of 25 ==========
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Training model ...
+Number of params: 1123801 (retreival took 5.301950 secs)
+========== Epoch 1 out of 25 ==========
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Training model ...
+Number of params: 1123801 (retreival took 7.314081 secs)
+========== Epoch 1 out of 25 ==========
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Training model ...
+Number of params: 1123801 (retreival took 6.109698 secs)
+========== Epoch 1 out of 25 ==========
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Training model ...
+Number of params: 1123801 (retreival took 6.918379 secs)
+========== Epoch 1 out of 25 ==========
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Validating model ...
+-- validation --
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Validating model ...
+-- validation --
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Validating model ...
+-- validation --
+Average validation loss: 72.4299762023
+F1: 70.7699296404, EM: 57.6, for 1000 samples
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Exporting model ...
+Begin to export trained model to export/1
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Exporting model ...
+Begin to export trained model to export/1
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Exporting model ...
+Begin to export trained model to export/1
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Exporting model ...
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Exporting model ...
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Exporting model ...
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Exporting model ...
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Exporting model ...
+-- get answer --
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Exporting model ...
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Training model ...
+Number of params: 1123801 (retreival took 6.492247 secs)
+========== Epoch 1 out of 25 ==========
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Training model ...
+Number of params: 1123801 (retreival took 5.199216 secs)
+========== Epoch 1 out of 25 ==========
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Training model ...
+Number of params: 1123801 (retreival took 5.328379 secs)
+========== Epoch 1 out of 25 ==========
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Exporting model ...
+Begin to export trained model to export/1
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Exporting model ...
+Begin to export trained model to export/1
+No assets to save.
+No assets to write.
+SavedModel written to: export/1/saved_model.pb
+Finishing exporting trained model to export/1
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Exporting model ...
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Exporting model ...
+-- export setup --
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Exporting model ...
+-- export setup --
+Begin to export trained model to export/1
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Exporting model ...
+-- export setup --
+Begin to export trained model to export/1
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Exporting model ...
+-- export setup --
+Begin to export trained model to export/1
+No assets to save.
+No assets to write.
+SavedModel written to: export/1/saved_model.pb
+Finishing exporting trained model to export/1
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Exporting model ...
+-- export setup --
+Begin to export trained model to export/1
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Training model ...
+Number of params: 1123801 (retreival took 5.145882 secs)
+========== Epoch 1 out of 200 ==========
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Training model ...
+Number of params: 1123801 (retreival took 5.281031 secs)
+========== Epoch 1 out of 200 ==========
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Training model ...
+Number of params: 1123801 (retreival took 5.308691 secs)
+========== Epoch 1 out of 200 ==========
+-- validation --
+Average validation loss: 62.9689025879
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Training model ...
+Number of params: 1123801 (retreival took 5.183433 secs)
+========== Epoch 1 out of 200 ==========
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Training model ...
+Number of params: 1123801 (retreival took 5.094641 secs)
+========== Epoch 1 out of 200 ==========
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Training model ...
+Number of params: 1123801 (retreival took 5.249574 secs)
+========== Epoch 1 out of 200 ==========
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Training model ...
+Number of params: 1123801 (retreival took 5.498537 secs)
+========== Epoch 1 out of 200 ==========
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Training model ...
+Number of params: 1123801 (retreival took 5.159336 secs)
+========== Epoch 1 out of 200 ==========
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Training model ...
+Number of params: 1123801 (retreival took 5.221946 secs)
+========== Epoch 1 out of 200 ==========
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Training model ...
+Number of params: 1123801 (retreival took 5.290874 secs)
+========== Epoch 1 out of 200 ==========
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Training model ...
+Number of params: 1123801 (retreival took 5.149646 secs)
+========== Epoch 1 out of 200 ==========
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Training model ...
+Number of params: 1123801 (retreival took 5.048835 secs)
+========== Epoch 1 out of 200 ==========
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Training model ...
+Number of params: 1123801 (retreival took 5.339717 secs)
+========== Epoch 1 out of 1 ==========
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Training model ...
+Number of params: 1123801 (retreival took 5.429021 secs)
+========== Epoch 1 out of 1 ==========
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Training model ...
+Number of params: 1123801 (retreival took 5.472674 secs)
+========== Epoch 1 out of 1 ==========
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Training model ...
+Number of params: 1123801 (retreival took 5.427315 secs)
+========== Epoch 1 out of 1 ==========
+-- validation --
+Average validation loss: 59.7405128479
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Training model ...
+Number of params: 1123801 (retreival took 5.153331 secs)
+========== Epoch 1 out of 1 ==========
+-- validation --
+Average validation loss: 58.2442677816
+F1: 62.7435064935, EM: 40.0, for 10 samples
+New best f1 in val set
+
+Reading model parameters from train/fancier_model_0
+Restoring parameters from train/fancier_model_0
+Training model ...
+Number of params: 1123801 (retreival took 5.286637 secs)
+========== Epoch 1 out of 1 ==========
+-- validation --
+Average validation loss: 57.2641162872
+F1: 74.652014652, EM: 60.0, for 10 samples
+New best f1 in val set
+
+Begin to export trained model to export/1
+Reading model parameters from train/fancier_model_0
+Restoring parameters from train/fancier_model_0
+Training model ...
+Number of params: 1123801 (retreival took 5.328470 secs)
+========== Epoch 1 out of 1 ==========
+-- validation --
+Average validation loss: 56.2017033895
+F1: 62.6785714286, EM: 60.0, for 10 samples
+New best f1 in val set
+
+Begin to export trained model to export/1
+Reading model parameters from train/fancier_model_0
+Restoring parameters from train/fancier_model_0
+Training model ...
+Number of params: 1123801 (retreival took 5.181310 secs)
+========== Epoch 1 out of 1 ==========
+-- validation --
+Average validation loss: 57.0362091064
+F1: 51.9270435447, EM: 10.0, for 10 samples
+New best f1 in val set
+
+Begin to export trained model to export/1
+No assets to save.
+No assets to write.
+SavedModel written to: export/1/saved_model.pb
+Finishing exporting trained model to export/1
+Reading model parameters from train/fancier_model_0
+Restoring parameters from train/fancier_model_0
+Training model ...
+Number of params: 1123801 (retreival took 6.215179 secs)
+========== Epoch 1 out of 1 ==========
+-- validation --
+Average validation loss: 60.5257288615
+F1: 77.435483871, EM: 60.0, for 10 samples
+New best f1 in val set
+
+Begin to export trained model to qasystem_export/1
+No assets to save.
+No assets to write.
+SavedModel written to: qasystem_export/1/saved_model.pb
+Finishing exporting trained model to qasystem_export/1
+Reading model parameters from train/fancier_model_0
+Restoring parameters from train/fancier_model_0
+Exporting model ...
+Begin to export trained model to qasystem_export/1
+No assets to save.
+No assets to write.
+SavedModel written to: qasystem_export/1/saved_model.pb
+Finishing exporting trained model to qasystem_export/1
+ParseError: 1:24 : String missing ending quote: '"fancier_model_13\xe2\x80\x9d'
+train/checkpoint: Checkpoint ignored
+Created model with fresh parameters.
+Num params: 1123801
+Exporting model ...
+Begin to export trained model to qasystem_export/1
+No assets to save.
+No assets to write.
+SavedModel written to: qasystem_export/1/saved_model.pb
+Finishing exporting trained model to qasystem_export/1
+ParseError: 1:24 : String missing ending quote: '"fancier_model_13\xe2\x80\x9d'
+train/checkpoint: Checkpoint ignored
+Created model with fresh parameters.
+Num params: 1123801
+Training model ...
+Number of params: 1123801 (retreival took 5.065112 secs)
+========== Epoch 1 out of 1 ==========
+Average training loss: 236.705802917
+-- validation --
+Average validation loss: 198.656138102
+F1: 2.0, EM: 0.0, for 10 samples
+New best f1 in val set
+
+Reading model parameters from train/fancier_model_0
+Restoring parameters from train/fancier_model_0
+Training model ...
+Number of params: 1123801 (retreival took 5.277043 secs)
+========== Epoch 1 out of 1 ==========
+Average training loss: 230.99438858
+-- validation --
+Average validation loss: 198.701914469
+F1: 10.0, EM: 10.0, for 10 samples
+New best f1 in val set
+
+Reading model parameters from train/fancier_model_0
+Restoring parameters from train/fancier_model_0
+-- get answer --
+Reading model parameters from train/fancier_model_0
+Restoring parameters from train/fancier_model_0
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+-- get answer --
+Reading model parameters from train/fancier_model_0
+Restoring parameters from train/fancier_model_0
+-- get answer --
+Reading model parameters from train/fancier_model_0
+Restoring parameters from train/fancier_model_0
+-- get answer --
+ParseError: 1:24 : String missing ending quote: '"fancier_model_13\xe2\x80\x9d'
+train/checkpoint: Checkpoint ignored
+Created model with fresh parameters.
+Num params: 1123801
+-- get answer --
+ParseError: 1:24 : String missing ending quote: '"fancier_model_13\xe2\x80\x9d'
+train/checkpoint: Checkpoint ignored
+Created model with fresh parameters.
+Num params: 1123801
+Exporting model ...
+Begin to export trained model to qasystem_export/1
+No assets to save.
+No assets to write.
+SavedModel written to: qasystem_export/1/saved_model.pb
+Finishing exporting trained model to qasystem_export/1
+ParseError: 1:24 : String missing ending quote: '"fancier_model_13\xe2\x80\x9d'
+train/checkpoint: Checkpoint ignored
+Created model with fresh parameters.
+Num params: 1123801
+-- get answer --
+ParseError: 1:24 : String missing ending quote: '"fancier_model_13\xe2\x80\x9d'
+train/checkpoint: Checkpoint ignored
+Created model with fresh parameters.
+Num params: 1123801
+-- get answer --
+Created model with fresh parameters.
+Num params: 1123801
+-- get answer --
+ParseError: 1:24 : String missing ending quote: '"fancier_model_13\xe2\x80\x9d'
+train/checkpoint: Checkpoint ignored
+Created model with fresh parameters.
+Num params: 1123801
+-- get answer --
+ParseError: 1:24 : String missing ending quote: '"fancier_model_13\xe2\x80\x9d'
+train/checkpoint: Checkpoint ignored
+Created model with fresh parameters.
+Num params: 1123801
+Training model ...
+ParseError: 1:24 : Expected string but found: '\xe2'
+train/checkpoint: Checkpoint ignored
+Created model with fresh parameters.
+Num params: 1123801
+Training model ...
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Training model ...
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+Exporting model ...
+Begin to export trained model to qasystem_export/1
+No assets to save.
+No assets to write.
+SavedModel written to: qasystem_export/1/saved_model.pb
+Finishing exporting trained model to qasystem_export/1
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+-- get answer --
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+-- get answer --
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+-- get answer --
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+-- get answer --
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+-- get answer --
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+-- get answer --
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+-- get answer --
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+-- get answer --
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+-- get answer --
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+-- get answer --
+Reading model parameters from train/fancier_model_13
+Restoring parameters from train/fancier_model_13
+-- get answer --

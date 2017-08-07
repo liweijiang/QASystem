@@ -1,4 +1,3 @@
-
 import numpy as np
 val_file_names = ['val.ids.context', 'val.ids.question', 'val.question', 'val.span', 'val.answer', 'val.context']    
 file_names = ['train.ids.context', 'train.ids.question', 'train.question', 'train.span', 'train.answer', 'train.context']
@@ -14,7 +13,7 @@ print('set len', len(JXs))
 JX_idx = np.argsort(JXs)
 
 for file_name in file_names:
-	print file_name
+	print(file_name)
 	file = open(file_name, 'r')
 	x = []
 	for line in file:

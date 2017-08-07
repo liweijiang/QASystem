@@ -164,7 +164,6 @@ class Attention(object):
         # s = tf.reduce_sum(tf.multiply(h_aug, u_aug), axis = -1) # h * u: [N, JX, d_en] * [N, JQ, d_en] -> [N, JX, JQ]
 
         s = get_logits([h_aug, u_aug], None, True, is_train=(dropout<1.0), func='tri_linear', input_keep_prob=dropout)  # [N, M, JX, JQ]
-
         hu_mask_aug = h_mask_aug & u_mask_aug
         s = softmax_mask_prepro(s, hu_mask_aug)
 
@@ -302,7 +301,6 @@ class Decoder(object):
         lstm_bw_cell = tf.contrib.rnn.LSTMCell(self.state_size, state_is_tuple=True, reuse=tf.get_variable_scope().reuse)
 
         # add dropout
-
         if output_dropout:
             lstm_fw_cell = tf.contrib.rnn.DropoutWrapper(lstm_fw_cell, input_keep_prob = dropout, output_keep_prob = dropout)
             lstm_bw_cell = tf.contrib.rnn.DropoutWrapper(lstm_bw_cell, input_keep_prob = dropout, output_keep_prob = dropout)
@@ -382,16 +380,11 @@ class QASystem(object):
         self.question_mask_placeholder = tf.placeholder(dtype=tf.bool, name="q_mask", shape=(None, None))
         self.context_placeholder = tf.placeholder(dtype=tf.int32, name="c", shape=(None, None))
         self.context_mask_placeholder = tf.placeholder(dtype=tf.bool, name="c_mask", shape=(None, None))
-        # self.answer_placeholders = tf.placeholder(dtype=tf.int32, name="a", shape=(None, config.answer_size))
         self.answer_start_placeholders = tf.placeholder(dtype=tf.int32, name="a_s", shape=(None,))
         self.answer_end_placeholders = tf.placeholder(dtype=tf.int32, name="a_e", shape=(None,))
         self.dropout_placeholder = tf.placeholder(dtype=tf.float32, name="dropout", shape=())
         self.JX = tf.placeholder(dtype=tf.int32, name='JX', shape=())
         self.JQ = tf.placeholder(dtype=tf.int32, name='JQ', shape=())
-
-        # ==== used for exporting model for deploy ====
-        self.pred_span = None
-        self.pred_answer = None
 
         # ==== assemble pieces ====
         with tf.variable_scope("qa", initializer=tf.uniform_unit_scaling_initializer(1.0)):
@@ -526,7 +519,6 @@ class QASystem(object):
         feed_dict[self.context_mask_placeholder] = context_mask
         feed_dict[self.JQ] = JQ
         feed_dict[self.JX] = JX
-
         if answer_batch is not None:
             start = answer_batch[:,0]
             end = answer_batch[:,1]
@@ -547,7 +539,6 @@ class QASystem(object):
         """
         question_batch, question_len_batch, context_batch, context_len_batch, answer_batch = training_set
         input_feed = self.create_feed_dict(question_batch, question_len_batch, context_batch, context_len_batch, answer_batch=answer_batch, is_train = True)
-
         output_feed = [self.train_op, self.merged, self.loss]
 
         outputs = session.run(output_feed, input_feed)
@@ -572,17 +563,14 @@ class QASystem(object):
         so that other methods like self.answer() will be able to work properly
         :return:
         """
-
         # fill in this feed_dictionary like:
         # input_feed['test_x'] = test_x
-
+        #
         question_batch, question_len_batch, context_batch, context_len_batch, answer_batch = test_batch
         input_feed =  self.create_feed_dict(question_batch, question_len_batch, context_batch, context_len_batch, answer_batch=None, is_train = False)
         output_feed = [self.preds[0], self.preds[1]]
         outputs = session.run(output_feed, input_feed)
-
         s, e = outputs
-
         best_spans, scores = zip(*[get_best_span(si, ei, ci) for si, ei, ci in zip(s, e, context_batch)])
         return best_spans
 
@@ -592,7 +580,6 @@ class QASystem(object):
         predicts = []
         for i, batch in tqdm(enumerate(minibatches(dataset, self.config.batch_size, shuffle=False))):
             pred = self.answer(session, batch)
-            # prog.update(i + 1)
             predicts.extend(pred)
         return predicts
 
@@ -631,24 +618,17 @@ class QASystem(object):
 
         for example, (start, end) in zip(evaluate_set, predicts):
             q, _, c, _, (true_s, true_e) = example
-            # print (start, end, true_s, true_e)
             context_words = [vocab[w] for w in c]
 
             true_answer = ' '.join(context_words[true_s : true_e + 1])
             if start <= end:
-                predict_answer = ' '.join(context_words[start : end + 1])
+                self.predict_answer = ' '.join(context_words[start : end + 1])
             else:
-                predict_answer = ''
-
-            print('*' * 50 )
-            print('|| Line number: || ' + str(counter))
-            print('|| True Answer: || ' + true_answer)
-            print('|| Predicted Answer: || ' + predict_answer)
+                self.predict_answer = ''
 
             counter += 1
-            f1 += f1_score(predict_answer, true_answer)
-            em += exact_match_score(predict_answer, true_answer)
-
+            f1 += f1_score(self.predict_answer, true_answer)
+            em += exact_match_score(self.predict_answer, true_answer)
         f1 = 100 * f1 / sample
         em = 100 * em / sample
 
@@ -657,11 +637,10 @@ class QASystem(object):
 
         return f1, em
 
-    def get_answer(self, session, vocab, evaluation_data):
+    def get_single_answer(self, session, vocab, evaluation_data):
         """ get answer of a evaluation data """
         evaluate_set = [evaluation_data]
         predicts = self.predict_on_batch(session, evaluate_set)
-
         for example, (start, end) in zip(evaluate_set, predicts):
             q, _, c, _, (_, _) = example
             context_words = [vocab[w] for w in c]
@@ -670,7 +649,7 @@ class QASystem(object):
                 predict_answer = ' '.join(context_words[start : end + 1])
             else:
                 predict_answer = ''
-            return predict_answer, (start, end)
+        return predict_answer, (start, end)
 
     def run_epoch(self, session, epoch_num, training_set, vocab, validation_set, sample_size=400):
         set_num = len(training_set)
@@ -679,6 +658,8 @@ class QASystem(object):
 
         prog = Progbar(target=batch_num)
         avg_loss = 0
+
+        # batch: [question, len(question), context, len(context), answer]
         for i, batch in enumerate(minibatches(training_set, self.config.batch_size, window_batch = self.config.window_batch)):
             global_batch_num = batch_num * epoch_num + i
             _, summary, loss = self.optimize(session, batch)
@@ -690,6 +671,7 @@ class QASystem(object):
                 self.evaluate_answer(session, training_set, vocab, sample=sample_size, log=True)
                 self.evaluate_answer(session, validation_set, vocab, sample=sample_size, log=True)
             avg_loss += loss
+
         avg_loss /= batch_num
         logging.info("Average training loss: {}".format(avg_loss))
         return avg_loss
@@ -726,12 +708,11 @@ class QASystem(object):
             saver = tf.train.Saver()
             saver.save(session, train_dir+'/fancier_model_' + str(epoch))
 
-    def export_model(self, session, export_path_base):
+    def export_model(self, session, export_path_base, dataset=None, vocab=None):
         """ Export model """
         export_path = os.path.join(
         tf.compat.as_bytes(export_path_base),
-        tf.compat.as_bytes(str(FLAGS.model_version)
-        )
+        tf.compat.as_bytes(str(self.config.model_version)))
         logging.info("Begin to export trained model to {}".format(export_path))
 
         # create a servable
@@ -739,43 +720,38 @@ class QASystem(object):
 
         # Build the signature_def_map.
         serving_inputs_context = build_tensor_info(self.context_placeholder)
+        serving_inputs_context_mask = build_tensor_info(self.context_mask_placeholder)
         serving_inputs_question = build_tensor_info(self.question_placeholder)
-        serving_outputs_span = build_tensor_info(self.preds[0])
-        serving_outputs_raw_answer = build_tensor_info(self.preds[1])
-
-        classification_signature = (
-            build_signature_def(
-                inputs={
-                    signature_constants.PREDICT_INPUTS:
-                        serving_inputs_context,
-                    signature_constants.PREDICT_INPUTS:
-                        serving_inputs_question
-                },
-                outputs={
-                    signature_constants.CLASSIFY_OUTPUT_CLASSES:
-                        serving_outputs_span,
-                    signature_constants.CLASSIFY_OUTPUT_SCORES:
-                        serving_outputs_raw_answer
-                },
-                method_name=signature_constants.CLASSIFY_METHOD_NAME))
-
-        # info_inputs_context = build_tensor_info(serving_inputs_context)
-        # info_inputs_question = build_tensor_info(serving_inputs_question)
+        serving_inputs_question_mask = build_tensor_info(self.question_mask_placeholder)
+        serving_inputs_dropout = build_tensor_info(self.dropout_placeholder)
+        serving_inputs_JX = build_tensor_info(self.JX)
+        serving_inputs_JQ = build_tensor_info(self.JQ)
+        serving_outputs_span_start = build_tensor_info(self.preds[0])
+        serving_outputs_span_end = build_tensor_info(self.preds[1])
 
         prediction_signature = (
             build_signature_def(
-                inputs={'context': serving_inputs_context, 'question': serving_inputs_question},
-                outputs={'span': serving_outputs_span, 'raw': serving_outputs_raw_answer},
+                inputs={
+                    'context': serving_inputs_context,
+                    'context_mask': serving_inputs_context_mask,
+                    'question': serving_inputs_question,
+                    'question_mask': serving_inputs_question_mask,
+                    'JX': serving_inputs_JX,
+                    'JQ': serving_inputs_JQ,
+                    'dropout': serving_inputs_dropout
+                },
+                outputs={
+                    'span_start': serving_outputs_span_start,
+                    'span_end': serving_outputs_span_end
+                },
                 method_name=signature_constants.PREDICT_METHOD_NAME))
 
         legacy_init_op = tf.group(tf.tables_initializer(), name='legacy_init_op')
         builder.add_meta_graph_and_variables(
             session, [tag_constants.SERVING],
             signature_def_map={
-                'predict_images':
-                    prediction_signature,
-                    signature_constants.DEFAULT_SERVING_SIGNATURE_DEF_KEY:
-                    classification_signature,
+                'predict_answer':
+                    prediction_signature
             },
             legacy_init_op=legacy_init_op)
         builder.save()
@@ -792,5 +768,5 @@ class QASystem(object):
     def evaluation_single(self, session, dataset, vocab, evaluation_data):
         """ get predicted answer given a context paragraph and a question """
         logging.info("-- get answer --")
-        predict_answer, (start, end) = self.get_answer(session, vocab, evaluation_data)
+        predict_answer, (start, end) = self.get_single_answer(session, vocab, evaluation_data)
         return predict_answer, (start, end)
