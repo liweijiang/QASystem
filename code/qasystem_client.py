@@ -1,6 +1,9 @@
 # Filename: qasystem_client.py
 # Author: Liwei Jiang
-# Date: 2017/08/02
+# Date: 2017/08/08
+# Usage: Used to request predicted outputs of the qasystem
+#        model given certain inputs from TensorFlow Server.
+# Reference: https://github.com/yolandawww/QASystem
 
 from __future__ import print_function
 
@@ -18,7 +21,9 @@ tf.app.flags.DEFINE_string('server', 'localhost:9000',
                            'PredictionService host:port')
 FLAGS = tf.app.flags.FLAGS
 
+
 def initialize_vocab(vocab_path):
+    """ Initialize the vocab dictionary. """
     if tf.gfile.Exists(vocab_path):
         rev_vocab = []
         with tf.gfile.GFile(vocab_path, mode="rb") as f:
@@ -29,7 +34,9 @@ def initialize_vocab(vocab_path):
     else:
         raise ValueError("Vocabulary file %s not found.", vocab_path)
 
+
 def get_best_span(start_logits, end_logits, context_ids):
+    """ Get the best span given the predicted probability and the contex paragraph. """
     start_sentence_logits = []
     end_sentence_logits = []
     new_start_sentence = []
@@ -46,8 +53,6 @@ def get_best_span(start_logits, end_logits, context_ids):
         start_sentence_logits.append(new_start_sentence)
         end_sentence_logits.append(new_end_sentence)
 
-    # print start_sentence_logits
-    # print [len(a) for a in start_sentence_logits]
     best_word_span = (0, 0)
     best_sent_idx = 0
     argmax_j1 = 0
@@ -68,11 +73,17 @@ def get_best_span(start_logits, end_logits, context_ids):
     len_pre = 0
     for i in range(best_sent_idx):
         len_pre += len(start_sentence_logits[i])
-    # print best_sent_idx
     best_word_span = (len_pre + best_word_span[0], len_pre + best_word_span[1])
     return best_word_span, max_val
 
+
 def preprocess_single_eval_data(question, context, vocab):
+    """
+        Preprocess the single evaluation data.
+        Tokenize the raw context and question text.
+        Get the id of the raw context and question.
+        Arrange them into a list: [question, len(question), context, len(context), answer]
+    """
     question = add_space_between_word_char_sentence(question)
     context = add_space_between_word_char_sentence(context)
     question_id = sentence_to_token_ids(question, vocab)
@@ -82,6 +93,7 @@ def preprocess_single_eval_data(question, context, vocab):
 
 
 def main(_):
+    """ Request predicted results from the TensorFlow Server. """
     host, port = FLAGS.server.split(':')
     channel = implementations.insecure_channel(host, int(port))
     stub = prediction_service_pb2.beta_create_PredictionService_stub(channel)
@@ -97,11 +109,11 @@ def main(_):
     evaluation_data, raw_question_data, raw_context_data = preprocess_single_eval_data(input_question_raw, inputs_context_raw, vocab)
 
     print('------- Raw Question: ')
-    print(raw_question_data)
+    print(input_question_raw)
     print('------- Raw Context: ')
-    print(raw_context_data)
-    print('------- Evaluation Data: ')
-    print(evaluation_data)
+    print(inputs_context_raw)
+    # print('------- Evaluation Data: ')
+    # print(evaluation_data)
 
     serving_inputs_context = [evaluation_data[2]]
     serving_inputs_context_mask = [[]]
@@ -115,20 +127,20 @@ def main(_):
     serving_inputs_JQ = evaluation_data[1]
     serving_inputs_dropout = 1.0
 
-    print('-------------- serving_inputs_context --------------')
-    print(serving_inputs_context)
-    print('-------------- serving_inputs_context_mask --------------')
-    print(serving_inputs_context_mask)
-    print('-------------- serving_inputs_question --------------')
-    print(serving_inputs_question)
-    print('-------------- serving_inputs_question_mask --------------')
-    print(serving_inputs_question_mask)
-    print('-------------- serving_inputs_JX --------------')
-    print(serving_inputs_JX)
-    print('-------------- serving_inputs_JQ --------------')
-    print(serving_inputs_JQ)
-    print('-------------- serving_inputs_dropout --------------')
-    print(serving_inputs_dropout)
+    # print('-------------- serving_inputs_context --------------')
+    # print(serving_inputs_context)
+    # print('-------------- serving_inputs_context_mask --------------')
+    # print(serving_inputs_context_mask)
+    # print('-------------- serving_inputs_question --------------')
+    # print(serving_inputs_question)
+    # print('-------------- serving_inputs_question_mask --------------')
+    # print(serving_inputs_question_mask)
+    # print('-------------- serving_inputs_JX --------------')
+    # print(serving_inputs_JX)
+    # print('-------------- serving_inputs_JQ --------------')
+    # print(serving_inputs_JQ)
+    # print('-------------- serving_inputs_dropout --------------')
+    # print(serving_inputs_dropout)
 
     request.inputs['context'].CopyFrom(
         tf.contrib.util.make_tensor_proto(serving_inputs_context, shape=None))
@@ -154,19 +166,17 @@ def main(_):
 
     best_spans, scores = zip(*[get_best_span(si, ei, ci) for si, ei, ci in zip(span_start, span_end, context_batch)])
 
-    best_spans = best_spans[0]
+    # print('-------------- best_spans --------------')
+    # print(type(best_spans))
+    # print(best_spans)
+    # print(type(best_spans))
+    #
+    # print('-------------- raw_context_data --------------')
+    # print(type(raw_context_data))
+    # print(raw_context_data)
+    # print(len(raw_context_data))
 
-    print('-------------- best_spans --------------')
-    print(type(best_spans))
-    print(best_spans)
-    print(type(best_spans))
-
-    print('-------------- raw_context_data --------------')
-    print(type(raw_context_data))
-    print(raw_context_data)
-    print(len(raw_context_data))
-
-    predict_answer = find_phrase_given_span(raw_context_data, best_spans)
+    predict_answer = find_phrase_given_span(raw_context_data, best_spans[0])
 
     print('-------------- Predicted Answer --------------')
     print(predict_answer)

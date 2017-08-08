@@ -20,7 +20,6 @@ class Config():
 		self.id_question_filename = pjoin(data_dir, data_name + '.ids.question')
 		self.temp_filename = pjoin(data_dir, data_name + '.tempfile')
 
-
 # find the phrase given the answer span within a given paragraph
 def find_phrase_given_span(context_string, answer_span):
 	context_list = context_string.split()

@@ -709,7 +709,7 @@ class QASystem(object):
             saver.save(session, train_dir+'/fancier_model_' + str(epoch))
 
     def export_model(self, session, export_path_base, dataset=None, vocab=None):
-        """ Export model """
+        """ Export model for TensorFlow Serving """
         export_path = os.path.join(
         tf.compat.as_bytes(export_path_base),
         tf.compat.as_bytes(str(self.config.model_version)))
