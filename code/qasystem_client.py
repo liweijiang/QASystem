@@ -15,7 +15,7 @@ import numpy
 from tensorflow_serving.apis import predict_pb2
 from tensorflow_serving.apis import prediction_service_pb2
 from qa_data import sentence_to_token_ids
-from data_tool import add_space_between_word_char_sentence, find_phrase_given_span
+from utils.data_tool import add_space_between_word_char_sentence, find_phrase_given_span
 
 tf.app.flags.DEFINE_string('server', 'localhost:9000',
                            'PredictionService host:port')
@@ -92,28 +92,124 @@ def preprocess_single_eval_data(question, context, vocab):
     return [question_id, len(question_id), context_id, len(context_id), [0, 0]], question, context
 
 
-def main(_):
+class Client(object):
     """ Request predicted results from the TensorFlow Server. """
-    host, port = FLAGS.server.split(':')
+
+    def __init__(self, host="35.197.104.103", port="8000"):
+        self.initialize_client(host, port)
+
+    def initialize_client(self, host="35.197.104.103", port="8000"):
+        channel = implementations.insecure_channel(host, int(port))
+        self.stub = prediction_service_pb2.beta_create_PredictionService_stub(channel)
+        self.request = predict_pb2.PredictRequest()
+        self.request.model_spec.name = 'qasystem'
+        self.request.model_spec.signature_name = 'predict_answer'
+        self.vocab, rev_vocab = initialize_vocab("data/squad/vocab.dat")
+
+    def query(self, input_question_raw = 'What to use to determine the density of a liquid or a gas?'):
+
+        inputs_context_raw = 'The density at all points of a homogeneous object equals its total mass divided by its total volume. The mass is normally measured with a scale or balance; the volume may be measured directly (from the geometry of the object) or by the displacement of a fluid . To determine the density of a liquid or a gas, a hydrometer, a dasymeter or a Coriolis flow meter may be used, respectively. Similarly, hydrostatic weighing uses the displacement of water due to a submerged object to determine the density of the object.'
+        # input_question_raw = 'What to use to determine the density of a liquid or a gas?'
+
+        # [question, len(question), context, len(context), answer]
+        evaluation_data, raw_question_data, raw_context_data = preprocess_single_eval_data(input_question_raw, inputs_context_raw, self.vocab)
+
+        print('------- Raw Question: ')
+        print(input_question_raw)
+        print('------- Raw Context: ')
+        print(inputs_context_raw)
+        # print('------- Evaluation Data: ')
+        # print(evaluation_data)
+
+        serving_inputs_context = [evaluation_data[2]]
+        serving_inputs_context_mask = [[]]
+        for i in range(evaluation_data[3]):
+            serving_inputs_context_mask[0].append(True)
+        serving_inputs_question = [evaluation_data[0]]
+        serving_inputs_question_mask = [[]]
+        for i in range(evaluation_data[1]):
+            serving_inputs_question_mask[0].append(True)
+        serving_inputs_JX = evaluation_data[3]
+        serving_inputs_JQ = evaluation_data[1]
+        serving_inputs_dropout = 1.0
+
+        # print('-------------- serving_inputs_context --------------')
+        # print(serving_inputs_context)
+        # print('-------------- serving_inputs_context_mask --------------')
+        # print(serving_inputs_context_mask)
+        # print('-------------- serving_inputs_question --------------')
+        # print(serving_inputs_question)
+        # print('-------------- serving_inputs_question_mask --------------')
+        # print(serving_inputs_question_mask)
+        # print('-------------- serving_inputs_JX --------------')
+        # print(serving_inputs_JX)
+        # print('-------------- serving_inputs_JQ --------------')
+        # print(serving_inputs_JQ)
+        # print('-------------- serving_inputs_dropout --------------')
+        # print(serving_inputs_dropout)
+
+        self.request.inputs['context'].CopyFrom(
+            tf.contrib.util.make_tensor_proto(serving_inputs_context, shape=None))
+        self.request.inputs['context_mask'].CopyFrom(
+            tf.contrib.util.make_tensor_proto(serving_inputs_context_mask, shape=None))
+        self.request.inputs['question'].CopyFrom(
+            tf.contrib.util.make_tensor_proto(serving_inputs_question, shape=None))
+        self.request.inputs['question_mask'].CopyFrom(
+            tf.contrib.util.make_tensor_proto(serving_inputs_question_mask, shape=None))
+        self.request.inputs['JX'].CopyFrom(
+            tf.contrib.util.make_tensor_proto(serving_inputs_JX, dtype=tf.int32, shape=[]))
+        self.request.inputs['JQ'].CopyFrom(
+            tf.contrib.util.make_tensor_proto(serving_inputs_JQ, dtype=tf.int32, shape=[]))
+        self.request.inputs['dropout'].CopyFrom(
+            tf.contrib.util.make_tensor_proto(serving_inputs_dropout, dtype=tf.float32, shape=[]))
+
+        result = self.stub.Predict(self.request, 10.0)  # 10 secs timeout
+        result_future = self.stub.Predict.future(self.request, 10.0)  # 10 secs timeout
+
+        span_start = numpy.array([numpy.array(result_future.result().outputs['span_start'].float_val)])
+        span_end = numpy.array([numpy.array(result_future.result().outputs['span_end'].float_val)])
+        context_batch = numpy.array([numpy.array(serving_inputs_context_mask[0])])
+
+        best_spans, scores = zip(*[get_best_span(si, ei, ci) for si, ei, ci in zip(span_start, span_end, context_batch)])
+
+        # print('-------------- best_spans --------------')
+        # print(type(best_spans))
+        # print(best_spans)
+        # print(type(best_spans))
+        #
+        # print('-------------- raw_context_data --------------')
+        # print(type(raw_context_data))
+        # print(raw_context_data)
+        # print(len(raw_context_data))
+
+        predict_answer = find_phrase_given_span(raw_context_data, best_spans[0])
+
+        print('-------------- Predicted Answer --------------')
+        print(predict_answer)
+
+def initialize_client(host="35.197.104.103", port="8000"):
     channel = implementations.insecure_channel(host, int(port))
+
     stub = prediction_service_pb2.beta_create_PredictionService_stub(channel)
     request = predict_pb2.PredictRequest()
     request.model_spec.name = 'qasystem'
     request.model_spec.signature_name = 'predict_answer'
-    vocab, rev_vocab = initialize_vocab("tensorflow_serving/example/vocab.dat")
+    vocab, rev_vocab = initialize_vocab("data/squad/vocab.dat")
+    return (stub, request, vocab)
+
+def query(stub, request, vocab, input_question_raw = 'What to use to determine the density of a liquid or a gas?'):
 
     inputs_context_raw = 'The density at all points of a homogeneous object equals its total mass divided by its total volume. The mass is normally measured with a scale or balance; the volume may be measured directly (from the geometry of the object) or by the displacement of a fluid . To determine the density of a liquid or a gas, a hydrometer, a dasymeter or a Coriolis flow meter may be used, respectively. Similarly, hydrostatic weighing uses the displacement of water due to a submerged object to determine the density of the object.'
-    input_question_raw = 'What to use to determine the density of a liquid or a gas?'
+
 
     # [question, len(question), context, len(context), answer]
-    evaluation_data, raw_question_data, raw_context_data = preprocess_single_eval_data(input_question_raw, inputs_context_raw, vocab)
+    evaluation_data, raw_question_data, raw_context_data = preprocess_single_eval_data(input_question_raw, inputs_context_raw,
+    vocab)
 
     print('------- Raw Question: ')
     print(input_question_raw)
     print('------- Raw Context: ')
     print(inputs_context_raw)
-    # print('------- Evaluation Data: ')
-    # print(evaluation_data)
 
     serving_inputs_context = [evaluation_data[2]]
     serving_inputs_context_mask = [[]]
@@ -127,20 +223,65 @@ def main(_):
     serving_inputs_JQ = evaluation_data[1]
     serving_inputs_dropout = 1.0
 
-    # print('-------------- serving_inputs_context --------------')
-    # print(serving_inputs_context)
-    # print('-------------- serving_inputs_context_mask --------------')
-    # print(serving_inputs_context_mask)
-    # print('-------------- serving_inputs_question --------------')
-    # print(serving_inputs_question)
-    # print('-------------- serving_inputs_question_mask --------------')
-    # print(serving_inputs_question_mask)
-    # print('-------------- serving_inputs_JX --------------')
-    # print(serving_inputs_JX)
-    # print('-------------- serving_inputs_JQ --------------')
-    # print(serving_inputs_JQ)
-    # print('-------------- serving_inputs_dropout --------------')
-    # print(serving_inputs_dropout)
+    request.inputs['context'].CopyFrom(
+        tf.contrib.util.make_tensor_proto(serving_inputs_context, shape=None))
+    request.inputs['context_mask'].CopyFrom(
+        tf.contrib.util.make_tensor_proto(serving_inputs_context_mask, shape=None))
+    request.inputs['question'].CopyFrom(
+        tf.contrib.util.make_tensor_proto(serving_inputs_question, shape=None))
+    request.inputs['question_mask'].CopyFrom(
+        tf.contrib.util.make_tensor_proto(serving_inputs_question_mask, shape=None))
+    request.inputs['JX'].CopyFrom(
+        tf.contrib.util.make_tensor_proto(serving_inputs_JX, dtype=tf.int32, shape=[]))
+    request.inputs['JQ'].CopyFrom(
+        tf.contrib.util.make_tensor_proto(serving_inputs_JQ, dtype=tf.int32, shape=[]))
+    request.inputs['dropout'].CopyFrom(
+        tf.contrib.util.make_tensor_proto(serving_inputs_dropout, dtype=tf.float32, shape=[]))
+
+    result = stub.Predict(request, 10.0)  # 10 secs timeout
+    result_future = stub.Predict.future(request, 10.0)  # 10 secs timeout
+    span_start = numpy.array([numpy.array(result_future.result().outputs['span_start'].float_val)])
+    span_end = numpy.array([numpy.array(result_future.result().outputs['span_end'].float_val)])
+    context_batch = numpy.array([numpy.array(serving_inputs_context_mask[0])])
+    best_spans, scores = zip(*[get_best_span(si, ei, ci) for si, ei, ci in zip(span_start, span_end, context_batch)])
+    predict_answer = find_phrase_given_span(raw_context_data, best_spans[0])
+
+    print('-------------- Predicted Answer --------------')
+    print(predict_answer)
+
+
+
+def integrated_client(host="35.197.104.103", port="8000", input_question_raw = 'What is the density at all points of a homogeneous object?'):
+    channel = implementations.insecure_channel(host, int(port))
+
+    stub = prediction_service_pb2.beta_create_PredictionService_stub(channel)
+    request = predict_pb2.PredictRequest()
+    request.model_spec.name = 'qasystem'
+    request.model_spec.signature_name = 'predict_answer'
+    vocab, rev_vocab = initialize_vocab("data/squad/vocab.dat")
+
+    inputs_context_raw = 'The density at all points of a homogeneous object equals its total mass divided by its total volume. The mass is normally measured with a scale or balance; the volume may be measured directly (from the geometry of the object) or by the displacement of a fluid . To determine the density of a liquid or a gas, a hydrometer, a dasymeter or a Coriolis flow meter may be used, respectively. Similarly, hydrostatic weighing uses the displacement of water due to a submerged object to determine the density of the object.'
+
+    # [question, len(question), context, len(context), answer]
+    evaluation_data, raw_question_data, raw_context_data = preprocess_single_eval_data(input_question_raw, inputs_context_raw,
+    vocab)
+
+    print('------- Raw Question: ')
+    print(input_question_raw)
+    print('------- Raw Context: ')
+    print(inputs_context_raw)
+
+    serving_inputs_context = [evaluation_data[2]]
+    serving_inputs_context_mask = [[]]
+    for i in range(evaluation_data[3]):
+        serving_inputs_context_mask[0].append(True)
+    serving_inputs_question = [evaluation_data[0]]
+    serving_inputs_question_mask = [[]]
+    for i in range(evaluation_data[1]):
+        serving_inputs_question_mask[0].append(True)
+    serving_inputs_JX = evaluation_data[3]
+    serving_inputs_JQ = evaluation_data[1]
+    serving_inputs_dropout = 1.0
 
     request.inputs['context'].CopyFrom(
         tf.contrib.util.make_tensor_proto(serving_inputs_context, shape=None))
@@ -165,21 +306,17 @@ def main(_):
     context_batch = numpy.array([numpy.array(serving_inputs_context_mask[0])])
 
     best_spans, scores = zip(*[get_best_span(si, ei, ci) for si, ei, ci in zip(span_start, span_end, context_batch)])
-
-    # print('-------------- best_spans --------------')
-    # print(type(best_spans))
-    # print(best_spans)
-    # print(type(best_spans))
-    #
-    # print('-------------- raw_context_data --------------')
-    # print(type(raw_context_data))
-    # print(raw_context_data)
-    # print(len(raw_context_data))
-
     predict_answer = find_phrase_given_span(raw_context_data, best_spans[0])
 
     print('-------------- Predicted Answer --------------')
     print(predict_answer)
 
+
 if __name__ == '__main__':
-    tf.app.run()
+    # client = Client()
+    # client.query()
+    # tf.app.run()
+
+    stub, request, vocab = initialize_client(host="35.197.104.103", port="8000")
+    query(stub, request, vocab)
+    # integrated_client()
