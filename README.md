@@ -26,7 +26,7 @@ https://github.com/tensorflow/serving/blob/master/tensorflow_serving/example/inc
 
 https://github.com/tensorflow/serving/blob/master/tensorflow_serving/example/mnist_saved_model.py
 
-[code/qa_model.py](qa_model.py)  
+[qa_model.py](code/qa_model.py)  
 
 ### 3. Deploy the TensorFlow Model to Google Cloud
 
