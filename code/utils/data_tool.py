@@ -77,7 +77,6 @@ def add_space_between_word_char_sentence(data_sentence):
 
 # manipulate, parse, and tune data
 class DataTool():
-
 	def __init__(self):
 		return
 
@@ -119,7 +118,6 @@ class DataTool():
 	def find_span_given_phrase(self, answer_string, context_string):
 		start_index = 0
 		end_index = 0
-
 		answer_string = answer_string[:-1].strip()
 		if context_string.find(answer_string) != -1:
 			string_letter_index = context_string.find(answer_string)
